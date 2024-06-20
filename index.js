@@ -1,14 +1,11 @@
-const puppeteer = require("puppeteer");
-
-const url = "https://www.joshwcomeau.com/";
+const joshW = require("./joshw");
+const overReacted = require("./overreacted.js");
+const swizec = require("./swizec.js");
 
 const main = async () => {
-  const browser = await puppeteer.launch();
-  const page = await browser.newPage();
-
-  await page.goto(url);
-  await page.screenshot({ path: "screenshot.png" });
-  await browser.close();
+  await joshW();
+  await overReacted();
+  await swizec();
 };
 
 main();
