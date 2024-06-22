@@ -1,0 +1,143 @@
+[
+ {
+  "examNumber": "S4459/0001",
+  "points": "14",
+  "division": "I",
+  "subjects": [
+   {
+    "subject": "CIV",
+    "grade": "C"
+   },
+   {
+    "subject": "HIST",
+    "grade": "C"
+   },
+   {
+    "subject": "GEO",
+    "grade": "A"
+   },
+   {
+    "subject": "KISW",
+    "grade": "B"
+   },
+   {
+    "subject": "ENGL",
+    "grade": "B"
+   },
+   {
+    "subject": "PHY",
+    "grade": "C"
+   },
+   {
+    "subject": "CHEM",
+    "grade": "B"
+   },
+   {
+    "subject": "BIO",
+    "grade": "C"
+   },
+   {
+    "subject": "COMP STUD",
+    "grade": "B"
+   },
+   {
+    "subject": "B/MATH",
+    "grade": "B'"
+   }
+  ]
+ },
+ {
+  "examNumber": "S4459/0002",
+  "points": "15",
+  "division": "I",
+  "subjects": [
+   {
+    "subject": "CIV",
+    "grade": "A"
+   },
+   {
+    "subject": "HIST",
+    "grade": "B"
+   },
+   {
+    "subject": "GEO",
+    "grade": "B"
+   },
+   {
+    "subject": "KISW",
+    "grade": "B"
+   },
+   {
+    "subject": "ENGL",
+    "grade": "B"
+   },
+   {
+    "subject": "BIO",
+    "grade": "C"
+   },
+   {
+    "subject": "COMP STUD",
+    "grade": "C"
+   },
+   {
+    "subject": "B/MATH",
+    "grade": "C"
+   },
+   {
+    "subject": "COMM",
+    "grade": "C"
+   },
+   {
+    "subject": "B/KEEPING",
+    "grade": "C'"
+   }
+  ]
+ },
+ {
+  "examNumber": "S4459/0003",
+  "points": "14",
+  "division": "I",
+  "subjects": [
+   {
+    "subject": "CIV",
+    "grade": "B"
+   },
+   {
+    "subject": "HIST",
+    "grade": "C"
+   },
+   {
+    "subject": "GEO",
+    "grade": "A"
+   },
+   {
+    "subject": "KISW",
+    "grade": "B"
+   },
+   {
+    "subject": "ENGL",
+    "grade": "C"
+   },
+   {
+    "subject": "PHY",
+    "grade": "D"
+   },
+   {
+    "subject": "CHEM",
+    "grade": "B"
+   },
+   {
+    "subject": "BIO",
+    "grade": "B"
+   },
+   {
+    "subject": "AGRI",
+    "grade": "C"
+   },
+   {
+    "subject": "B/MATH",
+    "grade": "B'"
+   }
+  ]
+ }
+]

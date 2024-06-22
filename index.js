@@ -1,4 +1,5 @@
 const puppeteer = require("puppeteer");
+const fs = require("fs");
 
 const url =
   "https://matokeo.necta.go.tz/results/2023/csee/CSEE2023/results/s4459.htm";
@@ -10,30 +11,36 @@ const main = async () => {
   await page.goto(url);
 
   const allResults = await page.evaluate(() => {
-    const rows = document.querySelectorAll(
-      "body > table:nth-child(7) > tbody > tr"
+    const resultsTable = document.querySelectorAll(
+      "body > table:nth-child(7) > tbody > tr:not(:first-child)"
     );
 
-    return Array.from(rows).map(row => {
+    return Array.from(resultsTable).map(row => {
       const cells = row.querySelectorAll("td");
 
-      const candidateNo = cells[0].innerText.trim();
-      const points = cells[2].innerText.trim();
-      const division = cells[3].innerText.trim();
-      const subjects = cells[4].innerText
-        .trim()
-        .split("' ")
-        .map(item => {
-          const [subject, grade] = item.split(" - '");
-          return { subject, grade };
-        });
+      const examNumber = cells[0].innerText;
+      const points = cells[2].innerText;
+      const division = cells[3].innerText;
+      const subjects = cells[4].innerText.split("' ").map(value => {
+        const [subject, grade] = value.split(" - '");
+        return { subject, grade };
+      });
 
-      return { examNumber: candidateNo, points, division, subjects: subjects };
-      // return { examNumber.: candidateNo, points, division };
+      return {
+        examNumber,
+        points,
+        division,
+        subjects,
+      };
     });
   });
 
   console.log(allResults);
+
+  await page.close();
+  await browser.close();
+
+  fs.writeFileSync("results.json", JSON.stringify(allResults, null, 1));
 };
 
 main();
