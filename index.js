@@ -1,10 +1,9 @@
 const puppeteer = require("puppeteer");
-const fs = require("fs");
 
 const url =
   "https://matokeo.necta.go.tz/results/2023/csee/CSEE2023/results/s4459.htm";
 
-const main = async () => {
+async function getResults() {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
 
@@ -40,7 +39,7 @@ const main = async () => {
   await page.close();
   await browser.close();
 
-  fs.writeFileSync("results.json", JSON.stringify(allResults, null, 1));
-};
+  return;
+}
 
-main();
+getResults();
