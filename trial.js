@@ -1,45 +1,57 @@
-const fs = require("fs");
-
 async function getResults() {
   const url =
     "https://matokeo.necta.go.tz/results/2023/csee/CSEE2023/results/s4459.htm";
 
   try {
+    // Fetching the html content of the web page
     const response = await fetch(url);
     let html = await response.text();
 
-    const tableRegex = /<TABLE[^>]*>(.*?)<\/TABLE>/gis;
+    const tableRegex = /<table[^>]*>(.*?)<\/table>/gis; // Regex to match all table elements
     const tables = [];
     let match;
+
+    // Extracting all tables from the html content of the web page
     while ((match = tableRegex.exec(html)) !== null) {
       tables.push(match[0]);
     }
 
-    const targetTable = tables[2];
+    const resultsTable = tables[2];
 
-    const rowRegex = /<TR[^>]*>(.*?)<\/TR>/gis;
+    const rowRegex = /<tr[^>]*>(.*?)<\/tr>/gis; // Regex to match all tr elements (rows) within the table (resultsTable)
     let rows = [];
-    while ((match = rowRegex.exec(targetTable)) !== null) {
+
+    while ((match = rowRegex.exec(resultsTable)) !== null) {
       rows.push(match[0]);
     }
 
-    rows.shift();
+    rows.shift(); // Removes the first row (header row)
 
     const results = rows.map(row => {
-      const cellRegex = /<TD[^>]*>(.*?)<\/TD>/gis;
+      const cellRegex = /<td[^>]*>(.*?)<\/td>/gis; // Regex to match all td elements (cells) within the row
       let cells = [];
+
+      // Extracting all td elements (cells) from the currrent row
       while ((match = cellRegex.exec(row)) !== null) {
-        const cellContent = match[1].replace(/<\/?[^>]+(>|$)/g, "");
+        const cellContent = match[1].replace(/<\/?[^>]+(>|$)/g, ""); // Removes html tags from cell content
         cells.push(cellContent);
       }
 
-      const examNumber = cells[0];
-      const points = cells[2];
-      const division = cells[3];
-      const subjects = cells[4].split("' ").map(value => {
-        const [subject, grade] = value.split(" - '");
-        return { subject, grade };
-      });
+      // Extracting and cleaning required data from the cells.
+      const examNumber = cells[0].replace("\r\n", "").trim();
+      const points = cells[2].replace("\r\n", "").trim();
+      const division = cells[3].replace("\r\n", "").trim();
+      const subjects = cells[4]
+        .split("' ")
+        .filter(value => value.trim())
+        .map(value => {
+          let [subject, grade] = value.split(" - '");
+
+          subject = `${subject}`.replace("\r\n", "").trim();
+          grade = `${grade}`.replace("\r\n", "").trim();
+
+          return { subject, grade };
+        });
 
       return {
         examNumber,
@@ -51,12 +63,9 @@ async function getResults() {
 
     console.log(JSON.stringify(results, null, 2));
 
-    await page.close();
-    await browser.close();
-
     return;
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error("Ooops, error fetching data:", error);
   }
 }
 
