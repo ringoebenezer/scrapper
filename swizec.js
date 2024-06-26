@@ -35,7 +35,6 @@ module.exports = swizec;
 
 /**
  * @WebpageStructure
- *
  * <div class="css-zo9vbf">
  *  <a href="/blog/why-you-shouldnt-use-ai-to-write-your-tests/" class="css-jhttf5">
  *       <h2 class="css-b2rryz">Why you shouldn't use AI to write your tests</h2>
