@@ -61,9 +61,9 @@ async function getResults() {
       };
     });
 
-    console.log(JSON.stringify(results, null, 2));
+    console.log(results);
 
-    return;
+    return results;
   } catch (error) {
     console.error("Ooops, error fetching data:", error);
   }
